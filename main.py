@@ -20,8 +20,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Create fastapi server
 app = FastAPI(
-    openapi_url="/api/openapi.json",  # Customize the OpenAPI schema URL
-    docs_url="/api/docs",  # Customize the Swagger UI URL
+    root_path="/hackaton"
 )
 
 # Configure CORS middleware to allow requests from any origin
