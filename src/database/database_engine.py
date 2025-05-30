@@ -29,4 +29,4 @@ class DatabaseEngine:
             echo=False,
             pool_pre_ping=True,
         )
-        # DecoratedBase.metadata.create_all(self.engine)
+        DecoratedBase.metadata.create_all(self.engine)
