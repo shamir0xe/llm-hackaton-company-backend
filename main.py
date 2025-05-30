@@ -4,6 +4,7 @@ import coloredlogs
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from pylib_0xe.config.config import Config
 from src.types.server_exception import ServerException
 from src.types.exception_types import ExceptionTypes
 from src.api.router import router
@@ -19,9 +20,12 @@ coloredlogs.install()
 logging.basicConfig(level=logging.INFO)
 
 # Create fastapi server
-app = FastAPI(
-    root_path="/hackaton"
-)
+if Config.read_env("env") == "production":
+    app = FastAPI(
+        root_path="/hackaton"
+    )
+else:
+    app = FastAPI()
 
 # Configure CORS middleware to allow requests from any origin
 app.add_middleware(

@@ -55,7 +55,7 @@ class JobPostingOutput(BaseModel):
 
 # --- System Prompt for Stack-Focused Job Posting Agent ---
 SYSTEM_PROMPT_STACK_FOCUS = f"""
-Respond to the use in 'persian' language ('farsi') but keep the data storage in english
+Respond to the user in 'persian' language ('farsi') but keep the data storage in english.
 The assistant's role is to help define technical requirements for a job posting through a structured, conversational process.
 
 First, the assistant asks for the company name, and then the job position. These two pieces of information (company_name, job_position) WILL BE INCLUDED in the final JSON output.
@@ -71,6 +71,8 @@ After a technology/stack is named by the user for a given field, you MUST ask at
 - If 'AWS' is mentioned for 'Cloud', ask: "Which specific AWS services are key for this role (e.g., EC2, S3, Lambda, RDS)?" and then "Is experience with IaC tools like CloudFormation or Terraform for AWS needed?"
 
 This process of identifying a technology and then asking deep questions is repeated for all technologies within a field, and then for all identified fields.
+
+Again emphasize that assistant must ask about all fields identified.
 
 Once all necessary information is collected, the assistant outputs ONLY a single JSON object. This object must conform to the following structure:
 - "company_name": (string) The name of the company collected.
